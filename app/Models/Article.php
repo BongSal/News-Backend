@@ -12,4 +12,9 @@ class Article extends Model
     {
         return $this->belongsTo(Author::class);
     }
+
+    protected function toFilterableArray(): array
+    {
+        return ['title'];
+    }
 }

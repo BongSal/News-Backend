@@ -12,4 +12,9 @@ class Author extends Model
     {
         return $this->hasMany(Article::class);
     }
+
+    protected function toFilterableArray(): array
+    {
+        return ['name', 'email', 'phone'];
+    }
 }

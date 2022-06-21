@@ -18,4 +18,24 @@ class Model extends EloquentModel
     {
         return $this->belongsTo(User::class, 'updated_by');
     }
+
+    protected function toFilterableArray(): array
+    {
+        return [];
+    }
+
+    public function scopeFilter($query, $value)
+    {
+        if ($value) {
+            $query->where(fn ($qb) => $this->applyFilter($qb, $value));
+        }
+    }
+
+    private function applyFilter($query, $value)
+    {
+        $filterable = $this->toFilterableArray();
+        foreach ($filterable as $filter) {
+            $query->orWhere("{$this->getTable()}.$filter", 'iLike', "%$value%");
+        }
+    }
 }
