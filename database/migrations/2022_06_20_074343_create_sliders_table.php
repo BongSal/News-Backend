@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('sliders', function (Blueprint $table) {
             $table->uuid('id')->primary()->default(DB::raw('uuid_generate_v4()'));
             $table->foreignUuid('article_id')->constrained();
+            $table->unsignedSmallInteger('order')->default(0);
             $table->foreignUuid('created_by')->constrained('users');
             $table->foreignUuid('updated_by')->constrained('users');
             $table->softDeletes();

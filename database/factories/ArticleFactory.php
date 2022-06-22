@@ -39,6 +39,6 @@ class ArticleFactory extends Factory
 
     private function getImage()
     {
-        return basename(collect(Storage::allFiles('public/images'))->random());
+        return basename(collect(Storage::allFiles('files'))->random());
     }
 }

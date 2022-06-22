@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Slider extends Model
 {
     use HasFactory;
+
+    public function article()
+    {
+        return $this->belongsTo(Article::class);
+    }
 }

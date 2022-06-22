@@ -17,4 +17,9 @@ class Article extends Model
     {
         return ['title'];
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

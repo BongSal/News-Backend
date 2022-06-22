@@ -38,4 +38,15 @@ class Model extends EloquentModel
             $query->orWhere("{$this->getTable()}.$filter", 'iLike', "%$value%");
         }
     }
+
+    public function imageUrl($column = null)
+    {
+        $column = $column ?: 'image';
+        $image = $this->$column;
+        return [
+            'default' => route('files.show', "files/$image"),
+            'thumbnail' => route('files.show', "files/thumbnails/$image"),
+            'avatar' => route('files.show', "files/avatars/$image"),
+        ];
+    }
 }
