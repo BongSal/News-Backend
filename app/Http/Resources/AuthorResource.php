@@ -20,6 +20,7 @@ class AuthorResource extends JsonResource
             "profile" => $this->imageUrl('profile'),
             "email" => $this->email,
             "phone" => $this->phone,
+            'total_published' => $this->articles()->count(),
             "description" => $this->description,
             "creator" => $this->creator?->response(),
             "updater" => $this->updater?->response(),

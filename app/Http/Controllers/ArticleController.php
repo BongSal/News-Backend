@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Article\PopularArticleRequest;
+use App\Http\Resources\ArticleReadResource;
 use App\Http\Resources\ArticleResource;
 use App\Models\Article;
 
@@ -19,5 +20,11 @@ class ArticleController extends Controller
         $resource = Article::latest()
             ->with(['author', 'category', 'creator', 'updater'])->paginate();
         return ArticleResource::collection($resource);
+    }
+
+    public function show($slug)
+    {
+        $article = Article::where('slug', $slug)->first();
+        return ArticleReadResource::make($article)->resolve();
     }
 }
